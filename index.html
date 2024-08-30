@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RolyBlox - Roblox Chat Bypass</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1E1E1E;
+            color: #E0E0E0;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 0 5px #BB86FC;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #1E1E1E;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 300px;
+            word-wrap: break-word;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #BB86FC;
+            color: #121212;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #9F68F0;
+        }
+
+        button:active {
+            background-color: #7C4DFF;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Input:</h1>
+    <input type="text" id="textInput" placeholder="Enter your text" oninput="addDots()">
+    <div id="result"></div>
+    <button onclick="copyToClipboard()">Copy to clipboard</button>
+
+    <script>
+        function addDots() {
+            var inputText = document.getElementById("textInput").value;
+            if (inputText.length > 0) {
+                var outputText = inputText.split('').join('.') + '.';
+                outputText = outputText.replace(/\.\s\./g, '. ');
+                document.getElementById("result").innerText = outputText;
+            } else {
+                document.getElementById("result").innerText = '';
+            }
+        }
+
+        function copyToClipboard() {
+            var resultText = document.getElementById("result").innerText;
+            if (resultText.length > 0) {
+                navigator.clipboard.writeText(resultText).then(function() {
+                    alert("Your text has been copied to cliboard succesfully.");
+                }, function(err) {
+                    alert("Error: ", err);
+                });
+            } else {
+                alert("Error: empty text");
+            }
+        }
+    </script>
+
+</body>
+</html>
